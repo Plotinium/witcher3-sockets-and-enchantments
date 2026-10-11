@@ -115,3 +115,6 @@ The mod's own code (scripts, build script, menu, installer) is released under th
 and remain the property of CD PROJEKT RED; the MIT License does not apply to them.
 
 Author: Plotinium
+
+Source code: https://github.com/Plotinium/witcher3-sockets-and-enchantments
+Nexus Mods page: https://www.nexusmods.com/witcher3/mods/14113
