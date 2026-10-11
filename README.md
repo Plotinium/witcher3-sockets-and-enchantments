@@ -11,7 +11,9 @@ work on all your gear.
 - **Enchant without 3 sockets** (optional switch). The runewright stops asking for 3 rune slots.
 - **Optional cheats**, all off by default: enchant for free; unlock every runeword and glyphword;
   Remove gives back the recipe's runes and glyphs; keep the runes an item has when you enchant it
-  (the base game destroys them); an Enchanting tab in the main menu, with no runewright needed.
+  (the base game destroys them); an Enchanting tab and an Add sockets tab in the main menu, each
+  with its own switch, with no runewright or blacksmith needed (sockets cost their usual price and
+  the engine's socket cap still applies).
 - **Remove one word or all.** Select an applied word and press Remove to take off only that one;
   with nothing selected, Remove takes off all of them. The confirmation says which.
 - **Raise rune slots** (optional, chosen at install). Every sword and armor piece with fewer than 3

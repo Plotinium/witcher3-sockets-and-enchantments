@@ -9,9 +9,10 @@ preset_value_sae_max_unlimited	Unlimited	Illimitati
 option_sae_no_slot_requirement	Enchant any item, even without 3 sockets	Incanta tutti i pezzi, anche senza 3 slot
 option_sae_free_enchant	Enchant without runes or glyphs	Incanta senza rune né glifi
 option_sae_all_words	Unlock every runeword and glyphword	Sblocca tutte le runewords e glyphwords
-option_sae_refund_on_remove	Remove gives back runes and glyphs	Rimuovi restituisce rune e glifi
+option_sae_refund_on_remove	Removing a word gives back its runes and glyphs	Rimuovere una parola restituisce le sue rune e glifi
 option_sae_keep_runes	Keep runes when enchanting	Tieni le rune quando incanti
 option_sae_enchant_anywhere	Enchanting tab in the main menu	Scheda Incantamento nel menu principale
+option_sae_add_sockets_anywhere	Add sockets tab in the main menu	Scheda Aggiungi slot nel menu principale
 option_sae_uninstall	Prepare to remove the mod	Prepara la rimozione della mod
 sae_msg_full	Maximum number of enchantments allowed on this item reached	Raggiunto il massimo di incantesimi consentito su questo pezzo
 sae_msg_has_word	This item already has this enchantment.	Questo pezzo ha già questo incantesimo.
@@ -32,3 +33,4 @@ sae_keep_runes_text	The runes in this item go back to your inventory before it i
 sae_msg_removed_one	Enchantment removed:	Incantesimo rimosso:
 sae_msg_removed_all	All enchantments removed	Tutti gli incantesimi rimossi
 sae_msg_uninstall_started	Sockets and Enchantments: preparing the removal. Close the menu and wait for the confirmation message.	Slot e incantesimi: preparazione della rimozione in corso. Chiudi il menu e attendi il messaggio di conferma.
+sae_msg_refunded	Runes and glyphs given back	Rune e glifi restituiti

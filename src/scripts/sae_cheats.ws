@@ -58,6 +58,50 @@ function DefineMenuStructure()
 	wrappedMethod();
 	if( !isCiri && SAE_EnchantAnywhere() && !HasMenuDefined( 'EnchantingMenu' ) )
 		DefineMenuItem( 'EnchantingMenu', "panel_title_enchanting" );
+	// the same entry the game defines at a blacksmith (commonMenu.ws, DefineMenuItem 'AddSockets')
+	if( !isCiri && SAE_AddSocketsAnywhere() && !HasMenuDefined( 'BlacksmithMenu' ) )
+		DefineMenuItem( 'BlacksmithMenu', "panel_title_blacksmith_add_sockets", '', 'AddSockets', 'EnchantingSockets' );
+}
+
+// --- "Add sockets" in the main menu --------------------------------------------------------
+
+// Without a blacksmith the game's panel has no shop inventory and builds no "Add sockets" list.
+// Opened from the main menu, the player's own inventory stands in for the shop: prices are the
+// base prices, and the cap on added sockets is the engine's, as at any blacksmith.
+@wrapMethod(CR4BlacksmithMenu)
+function OnConfigUI()
+{
+	var r : bool;
+
+	r = wrappedMethod();
+	if( !_fixerInventory && !m_standaloneMode && SAE_AddSocketsAnywhere() && m_menuState == 'AddSockets' )
+	{
+		_fixerInventory = _inv;
+		_addSocketInv = new W3GuiAddSocketsInventoryComponent in this;
+		_addSocketInv.Initialize( _inv );
+		_addSocketInv.merchantInv = _inv;
+		_addSocketInv.ignorePosition = true;
+		ApplyMenuState( m_menuState );
+	}
+	return r;
+}
+
+// the game pays the shop and charges the player; with the player as the shop the two cancel out,
+// so the price is charged once more
+@wrapMethod(CR4BlacksmithMenu)
+function OnAddSocket( item : SItemUniqueId, price : int )
+{
+	var r : bool;
+	var standalone : bool;
+
+	standalone = !_fixerNpc && _fixerInventory == _inv;
+	r = wrappedMethod( item, price );
+	if( standalone )
+	{
+		_inv.RemoveMoney( price );
+		UpdatePlayerMoney();
+	}
+	return r;
 }
 
 // The game's panel closes when there is no runewright. This is the game's own function with one

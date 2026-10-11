@@ -26,6 +26,7 @@
 			<Var id="SAE_RefundOnRemove" displayName="sae_refund_on_remove" displayType="TOGGLE" tags="customDisplayName"/>
 			<Var id="SAE_KeepRunes" displayName="sae_keep_runes" displayType="TOGGLE" tags="customDisplayName"/>
 			<Var id="SAE_EnchantAnywhere" displayName="sae_enchant_anywhere" displayType="TOGGLE" tags="customDisplayName"/>
+			<Var id="SAE_AddSocketsAnywhere" displayName="sae_add_sockets_anywhere" displayType="TOGGLE" tags="customDisplayName"/>
 			<Var id="SAE_Uninstall" displayName="sae_uninstall" displayType="TOGGLE" tags="customDisplayName"/>
 		</VisibleVars>
 	</Group>

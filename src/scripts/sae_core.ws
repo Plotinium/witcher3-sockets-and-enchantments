@@ -57,6 +57,12 @@ function SAE_KeepRunes() : bool
 	return SAE_CfgOn( 'SAE_KeepRunes' );
 }
 
+// cheat: the blacksmith's "Add sockets" panel is a tab of the main menu
+function SAE_AddSocketsAnywhere() : bool
+{
+	return SAE_CfgOn( 'SAE_AddSocketsAnywhere' );
+}
+
 // cheat: the runewright panel is a tab of the main menu
 function SAE_EnchantAnywhere() : bool
 {

@@ -110,10 +110,14 @@ function SAE_RefreshAfterRemove( itemId : SItemUniqueId, message : string )
 {
 	// the list is rebuilt and re-sorted: a selection kept from before could point to another word
 	m_selectedEnchantment = '';
+	if( SAE_RefundOnRemove() )
+		message += " - " + GetLocStringByKeyExt( "sae_msg_refunded" );
 	theGame.GetGuiManager().ShowNotification( message );
 	UpdateMerchantData();
 	UpdateItemsCounter();
 	populateItemList();
+	// rebuilds the word lists so the ingredient counts include runes and glyphs given back
+	populateData();
 	populateEnchantmentsList( itemId );
 	m_playerInventory.NotifyEnhancedItem( itemId );
 }
@@ -328,7 +332,14 @@ function OnRemoveEnchantment( itemId : SItemUniqueId )
 		primary = m_playerInventory.GetEnchantment( itemId );
 		r = wrappedMethod( itemId );
 		if( refund && IsNameValid( primary ) && !m_playerInventory.IsItemEnchanted( itemId ) )
+		{
 			SAE_Refund( m_playerInventory, primary );
+			// the game's own removal does not know about the refund: show it and refresh the counts
+			theGame.GetGuiManager().ShowNotification( GetLocStringByKeyExt( "sae_msg_refunded" ) );
+			UpdateItemsCounter();
+			populateData();
+			populateEnchantmentsList( itemId );
+		}
 		return r;
 	}
 

@@ -38,11 +38,14 @@ installer. Turn every cheat off in the mod menu unless a step says otherwise.
     - Enchant without runes or glyphs: the apply button works with missing ingredients and
       nothing is spent.
     - Unlock every runeword and glyphword: the runewright lists every word.
-    - Remove gives back runes and glyphs: removing a word returns its recipe.
+    - Removing a word gives back its runes and glyphs: the recipe returns, the panel's ingredient
+      counts update at once and a message says so.
     - Keep runes when enchanting: enchant an item that holds a rune; the rune comes back to the
       inventory. Before turning this on, check once with it off whether the game already returns
       the rune: if it does, the cheat would return it twice.
     - Enchanting tab in the main menu: the tab appears next to Inventory and Alchemy and the panel
       opens; the runewright's own panel still opens too.
+    - Add sockets tab in the main menu: the tab appears, adds a socket at the usual price (money
+      drops by that price once), stops at the engine's cap; a blacksmith's panel still works.
 12. **Removal**: follow the uninstall steps in the README, then load the save without the mod.
     Inventory and items are fine, and the returned runes are there.
