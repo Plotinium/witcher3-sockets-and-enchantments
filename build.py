@@ -281,10 +281,24 @@ def build_core(originals):
 
 
 def build_fomod():
+    """Copies the installer. An option shows a picture when src/fomod/images/<option>.png exists
+    (base, slots3, slots5): without pictures Vortex leaves the left half of the window empty."""
     fomod = os.path.join(BUILD, 'fomod')
     os.makedirs(fomod, exist_ok=True)
+    images = os.path.join(SRC, 'fomod', 'images')
     for f in ('info.xml', 'ModuleConfig.xml'):
         t = open(os.path.join(SRC, 'fomod', f), encoding='utf-8').read().replace('{VERSION}', VERSION)
+
+        def image(m):
+            name = m.group(1) + '.png'
+            if not os.path.isfile(os.path.join(images, name)):
+                return ''
+            os.makedirs(os.path.join(fomod, 'images'), exist_ok=True)
+            shutil.copy(os.path.join(images, name), os.path.join(fomod, 'images', name))
+            return '<image path="fomod' + chr(92) + 'images' + chr(92) + name + '" />'
+
+        t = re.sub(r'<!--IMAGE:(\w+)-->', image, t)
+        t = re.sub(r'\n[ \t]*\n', '\n', t)  # drop the lines left empty by a missing picture
         open(os.path.join(fomod, f), 'w', encoding='utf-8', newline='\n').write(t)
 
 
