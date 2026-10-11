@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sockets and Enchantments menu (Options > Mods). Labels come from the mod's *.w3strings files:
+     panel_sae_group, option_sae_*, preset_value_sae_* (and the same keys without prefix). -->
+<UserConfig>
+	<Group id="SocketsAndEnchants" displayName="Mods.sae_group">
+		<VisibleVars>
+			<Var id="SAE_NoSlotRequirement" displayName="sae_no_slot_requirement" displayType="TOGGLE" tags="customDisplayName"/>
+			<Var id="SAE_MaxEnchants" displayName="sae_max_enchants" displayType="OPTIONS" tags="customNames;customDisplayName">
+				<OptionsArray>
+					<Option id="0" displayName="sae_max_1">
+						<Entry varId="SAE_MaxEnchants" value="0"/>
+					</Option>
+					<Option id="1" displayName="sae_max_3">
+						<Entry varId="SAE_MaxEnchants" value="1"/>
+					</Option>
+					<Option id="2" displayName="sae_max_5">
+						<Entry varId="SAE_MaxEnchants" value="2"/>
+					</Option>
+					<Option id="3" displayName="sae_max_unlimited">
+						<Entry varId="SAE_MaxEnchants" value="3"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<Var id="SAE_FreeEnchant" displayName="sae_free_enchant" displayType="TOGGLE" tags="customDisplayName"/>
+			<Var id="SAE_AllWords" displayName="sae_all_words" displayType="TOGGLE" tags="customDisplayName"/>
+			<Var id="SAE_RefundOnRemove" displayName="sae_refund_on_remove" displayType="TOGGLE" tags="customDisplayName"/>
+			<Var id="SAE_KeepRunes" displayName="sae_keep_runes" displayType="TOGGLE" tags="customDisplayName"/>
+			<Var id="SAE_EnchantAnywhere" displayName="sae_enchant_anywhere" displayType="TOGGLE" tags="customDisplayName"/>
+			<Var id="SAE_Uninstall" displayName="sae_uninstall" displayType="TOGGLE" tags="customDisplayName"/>
+		</VisibleVars>
+	</Group>
+</UserConfig>

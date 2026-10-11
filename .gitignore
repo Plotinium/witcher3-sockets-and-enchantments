@@ -1,0 +1,11 @@
+# build output
+build/
+dist/
+*.zip
+__pycache__/
+
+# item XML extracted from the game: CD PROJEKT RED data, never published
+cache/
+
+# the author's own documents (publishing guide, Nexus page texts): never published
+private/

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fomod>
+	<Name>Sockets and Enchantments</Name>
+	<Author>Plotinium</Author>
+	<Version>{VERSION}</Version>
+	<Description>Enchant every armor piece, stack several runewords or glyphwords on one item, and optionally raise the minimum number of rune slots.</Description>
+	<Groups>
+		<element>Gameplay</element>
+	</Groups>
+</fomod>

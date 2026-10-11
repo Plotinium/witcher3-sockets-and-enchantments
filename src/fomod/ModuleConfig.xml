@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+	<moduleName>Sockets and Enchantments</moduleName>
+	<requiredInstallFiles>
+		<folder source="core" destination="" />
+	</requiredInstallFiles>
+	<installSteps order="Explicit">
+		<installStep name="Rune slots">
+			<optionalFileGroups order="Explicit">
+				<group name="Minimum rune slots on swords and armor" type="SelectExactlyOne">
+					<plugins order="Explicit">
+						<plugin name="As in the base game">
+							<description>Rune slots are not changed. Choose this if another mod already changes item slots.</description>
+							<typeDescriptor>
+								<type name="Recommended" />
+							</typeDescriptor>
+						</plugin>
+						<plugin name="At least 3">
+							<description>Every sword and armor piece with fewer than 3 rune slots gets 3. Items with more keep theirs. Changing this choice needs a reinstall and a game restart. Before changing or removing this choice, turn on Prepare to remove the mod in the mod menu, wait for the message and save.</description>
+							<files>
+								<folder source="slots3" destination="" />
+							</files>
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+						<plugin name="At least 5">
+							<description>Every sword and armor piece with fewer than 5 rune slots gets 5. Items with more keep theirs. Changing this choice needs a reinstall and a game restart. Before changing or removing this choice, turn on Prepare to remove the mod in the mod menu, wait for the message and save.</description>
+							<files>
+								<folder source="slots5" destination="" />
+							</files>
+							<typeDescriptor>
+								<type name="Optional" />
+							</typeDescriptor>
+						</plugin>
+					</plugins>
+				</group>
+			</optionalFileGroups>
+		</installStep>
+	</installSteps>
+</config>

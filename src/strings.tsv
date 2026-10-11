@@ -1,0 +1,33 @@
+key	en	it
+panel_mods	Mods	Mods
+panel_sae_group	Sockets and Enchantments	Slot e incantesimi
+option_sae_max_enchants	Enchantments per item	Incantesimi per pezzo
+preset_value_sae_max_1	1 (as in the base game)	1 (come nel gioco)
+preset_value_sae_max_3	3	3
+preset_value_sae_max_5	5	5
+preset_value_sae_max_unlimited	Unlimited	Illimitati
+option_sae_no_slot_requirement	Enchant any item, even without 3 sockets	Incanta tutti i pezzi, anche senza 3 slot
+option_sae_free_enchant	Enchant without runes or glyphs	Incanta senza rune né glifi
+option_sae_all_words	Unlock every runeword and glyphword	Sblocca tutte le runewords e glyphwords
+option_sae_refund_on_remove	Remove gives back runes and glyphs	Rimuovi restituisce rune e glifi
+option_sae_keep_runes	Keep runes when enchanting	Tieni le rune quando incanti
+option_sae_enchant_anywhere	Enchanting tab in the main menu	Scheda Incantamento nel menu principale
+option_sae_uninstall	Prepare to remove the mod	Prepara la rimozione della mod
+sae_msg_full	Maximum number of enchantments allowed on this item reached	Raggiunto il massimo di incantesimi consentito su questo pezzo
+sae_msg_has_word	This item already has this enchantment.	Questo pezzo ha già questo incantesimo.
+sae_msg_uninstall_mode	Turn off "Prepare to remove the mod" to enchant.	Disattiva «Prepara la rimozione della mod» per incantare.
+sae_msg_missing_ingredients	Not enough runes or glyphs.	Rune o glifi insufficienti.
+sae_msg_cleaned	Sockets and Enchantments: enchantments and runes the base game does not know were removed, and runes and glyphs are back in your inventory. Save the game, then remove the mod.	Slot e incantesimi: tolti gli incantesimi e le rune che il gioco base non conosce, rune e glifi sono tornati nell'inventario. Salva la partita, poi togli la mod.
+sae_msg_ready	Sockets and Enchantments: nothing left to clean up. You can save and remove the mod.	Slot e incantesimi: non c'è altro da sistemare. Puoi salvare e togliere la mod.
+sae_list_applied	applied	applicata
+sae_remove_one_title	Remove one enchantment	Rimuovi un incantesimo
+sae_remove_one_text	Only this enchantment will be removed:	Verrà tolto solo questo incantesimo:
+sae_remove_one_rest	The others stay on the item.	Gli altri restano sul pezzo.
+sae_remove_all_title	Remove all enchantments	Rimuovi tutti gli incantesimi
+sae_remove_all_text	All enchantments on this item will be removed	Verranno tolti tutti gli incantesimi del pezzo
+sae_remove_all_rest	Runes and glyphs are not returned. To remove only one, select it in the list first.	Rune e glifi non vengono restituiti. Per toglierne uno solo, selezionalo prima nella lista.
+sae_remove_all_hint	To remove only one, select it in the list first.	Per toglierne uno solo, selezionalo prima nella lista.
+sae_refund_note	Runes and glyphs of the recipe go back to your inventory.	Rune e glifi della ricetta tornano nell'inventario.
+sae_keep_runes_text	The runes in this item go back to your inventory before it is enchanted.	Le rune di questo pezzo tornano nell'inventario prima dell'incantesimo.
+sae_msg_removed_one	Enchantment removed:	Incantesimo rimosso:
+sae_msg_removed_all	All enchantments removed	Tutti gli incantesimi rimossi
