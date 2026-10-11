@@ -10,13 +10,13 @@
 				<group name="Minimum rune slots on swords and armor" type="SelectExactlyOne">
 					<plugins order="Explicit">
 						<plugin name="As in the base game">
-							<description>Rune slots are not changed. Choose this if another mod already changes item slots.</description>
+							<description>Rune slots are not changed. Choose this if another mod already changes item slots. Item data is loaded only when the game starts, so the number of slots cannot be changed in the in-game menu: this installer is the only place to choose it.</description>
 							<typeDescriptor>
 								<type name="Recommended" />
 							</typeDescriptor>
 						</plugin>
 						<plugin name="At least 3">
-							<description>Every sword and armor piece with fewer than 3 rune slots gets 3. Items with more keep theirs. Changing this choice needs a reinstall and a game restart. Before changing or removing this choice, turn on Prepare to remove the mod in the mod menu, wait for the message and save.</description>
+							<description>Every sword and armor piece with fewer than 3 rune slots gets 3. Items with more keep theirs. Item data is loaded only when the game starts, so the number of slots cannot be changed in the in-game menu: this installer is the only place to choose it. To change it, reinstall the mod and restart the game. Before changing or removing this choice, turn on Prepare to remove the mod in the mod menu, wait for the message and save.</description>
 							<files>
 								<folder source="slots3" destination="" />
 							</files>
@@ -25,7 +25,7 @@
 							</typeDescriptor>
 						</plugin>
 						<plugin name="At least 5">
-							<description>Every sword and armor piece with fewer than 5 rune slots gets 5. Items with more keep theirs. Changing this choice needs a reinstall and a game restart. Before changing or removing this choice, turn on Prepare to remove the mod in the mod menu, wait for the message and save.</description>
+							<description>Every sword and armor piece with fewer than 5 rune slots gets 5. Items with more keep theirs. Item data is loaded only when the game starts, so the number of slots cannot be changed in the in-game menu: this installer is the only place to choose it. To change it, reinstall the mod and restart the game. Before changing or removing this choice, turn on Prepare to remove the mod in the mod menu, wait for the message and save.</description>
 							<files>
 								<folder source="slots5" destination="" />
 							</files>

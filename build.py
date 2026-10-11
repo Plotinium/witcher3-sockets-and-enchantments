@@ -134,6 +134,31 @@ def check_wraps():
                 raise SystemExit(f'{f}: {name} calls wrappedMethod {n} times')
 
 
+# WitcherScript keywords: none of them may be used as a variable or parameter name
+# ("syntax error, unexpected TOKEN_ENTRY" for a variable named entry)
+KEYWORDS = {
+    'abstract', 'autobind', 'break', 'case', 'class', 'cleanup', 'const', 'continue', 'default',
+    'defaults', 'delete', 'do', 'editable', 'else', 'entry', 'enum', 'event', 'exec', 'extends',
+    'false', 'final', 'for', 'function', 'hint', 'if', 'import', 'in', 'inlined', 'latent', 'new',
+    'null', 'optional', 'out', 'parent', 'private', 'protected', 'public', 'quest', 'return',
+    'reward', 'saved', 'single', 'state', 'statemachine', 'storyscene', 'struct', 'super',
+    'switch', 'this', 'timer', 'true', 'var', 'virtual_parent', 'while',
+}
+
+
+def check_identifiers():
+    """Stops the build if a variable or parameter uses a WitcherScript keyword as its name."""
+    for f in sorted(os.listdir(os.path.join(SRC, 'scripts'))):
+        t = open(os.path.join(SRC, 'scripts', f), encoding='utf-8').read()
+        names = set()
+        for m in re.finditer(r'\bvar\s+([A-Za-z_][\w\s,]*?)\s*:', t):
+            names |= {x.strip() for x in m.group(1).split(',')}
+        names |= set(re.findall(r'[(,]\s*(?:out\s+|optional\s+)?([A-Za-z_]\w*)\s*:', t))
+        bad = sorted(n for n in names if n.lower() in KEYWORDS)
+        if bad:
+            raise SystemExit(f'{f}: keyword used as a name: {bad}')
+
+
 def run_wcc(*args):
     r = subprocess.run([WCC, *args], cwd=os.path.dirname(WCC), capture_output=True, text=True,
                        encoding='utf-8', errors='replace', timeout=600)
@@ -279,6 +304,7 @@ def make_zip():
 
 def build():
     check_wraps()
+    check_identifiers()
     prepare_cache()
     shutil.rmtree(BUILD, ignore_errors=True)
     originals = {}

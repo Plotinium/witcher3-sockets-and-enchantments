@@ -362,8 +362,8 @@ function OnRemoveEnchantment( itemId : SItemUniqueId )
 function SAE_MarkList( menuInv : CInventoryComponent, item : SItemUniqueId, words : array<CName>, data : CScriptedFlashArray, manager : W3EnchantmentManager )
 {
 	var schem : SEnchantmentSchematic;
-	var entry : CScriptedFlashObject;
-	var entryName : int;
+	var listEntry : CScriptedFlashObject;
+	var listEntryName : int;
 	var label : string;
 	var i, j : int;
 
@@ -371,18 +371,18 @@ function SAE_MarkList( menuInv : CInventoryComponent, item : SItemUniqueId, word
 		return;
 	for( i = 0; i < data.GetLength(); i += 1 )
 	{
-		entry = data.GetElementFlashObject( i );
-		entryName = entry.GetMemberFlashUInt( "name" );
+		listEntry = data.GetElementFlashObject( i );
+		listEntryName = listEntry.GetMemberFlashUInt( "name" );
 		for( j = 0; j < words.Size(); j += 1 )
 		{
-			if( NameToFlashUInt( words[j] ) != entryName )
+			if( NameToFlashUInt( words[j] ) != listEntryName )
 				continue;
 			if( manager.GetSchematic( words[j], schem ) )
 			{
 				label = GetLocStringByKeyExt( NameToString( schem.localizedName ) );
 				if( menuInv.IsIdValid( item ) && SAE_HasWord( menuInv, item, words[j] ) )
 					label += " - " + GetLocStringByKeyExt( "sae_list_applied" );
-				entry.SetMemberFlashString( "localizedName", label );
+				listEntry.SetMemberFlashString( "localizedName", label );
 			}
 			break;
 		}
