@@ -31,3 +31,4 @@ sae_refund_note	Runes and glyphs of the recipe go back to your inventory.	Rune e
 sae_keep_runes_text	The runes in this item go back to your inventory before it is enchanted.	Le rune di questo pezzo tornano nell'inventario prima dell'incantesimo.
 sae_msg_removed_one	Enchantment removed:	Incantesimo rimosso:
 sae_msg_removed_all	All enchantments removed	Tutti gli incantesimi rimossi
+sae_msg_uninstall_started	Sockets and Enchantments: preparing the removal. Close the menu and wait for the confirmation message.	Slot e incantesimi: preparazione della rimozione in corso. Chiudi il menu e attendi il messaggio di conferma.

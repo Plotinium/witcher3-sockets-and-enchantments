@@ -14,6 +14,13 @@ var saeTickAcc : float;
 @addField(W3PlayerWitcher)
 var saeCleanReported : bool;
 
+// set when the cleanup ran from the options menu, so its result is shown as soon as play resumes
+@addField(W3PlayerWitcher)
+var saeCleanPending : bool;
+
+@addField(W3PlayerWitcher)
+var saeCleanFixed : int;
+
 // original slots of the item if one of this mod's slot options raised them, otherwise -1.
 // The option is recognized by the number of slots the game reads now from the XML (3 or 5);
 // if the slots come from another mod, nothing is touched.
@@ -107,18 +114,54 @@ function SAE_HorseInventory( w : W3PlayerWitcher ) : CInventoryComponent
 	return w.GetHorseManager().GetInventoryComponent();
 }
 
+// runs the cleanup on every inventory the mod checks and returns how many things it fixed
+function SAE_CleanEverything( w : W3PlayerWitcher ) : int
+{
+	if( !w )
+		return 0;
+	return SAE_CleanAll( w.GetInventory() ) + SAE_CleanAll( SAE_HorseInventory( w ) );
+}
+
+// "Prepare to remove the mod" turned on in the options: the cleanup starts at once, while the
+// menu is still open, and the player is told what is happening instead of waiting in silence
+@wrapMethod(CR4IngameMenu)
+function OnOptionValueChanged( groupId : int, optionName : name, optionValue : string )
+{
+	var w : W3PlayerWitcher;
+
+	if( optionName == 'SAE_Uninstall' && optionValue == "true" )
+	{
+		w = GetWitcherPlayer();
+		if( w )
+		{
+			theGame.GetGuiManager().ShowNotification( GetLocStringByKeyExt( "sae_msg_uninstall_started" ) );
+			w.saeCleanFixed = SAE_CleanEverything( w );
+			w.saeCleanPending = true;
+			w.saeCleanReported = false;
+		}
+	}
+	return wrappedMethod( groupId, optionName, optionValue );
+}
+
 @wrapMethod(W3PlayerWitcher)
 function OnPlayerTickTimer( deltaTime : float )
 {
 	var fixed : int;
 
 	saeTickAcc += deltaTime;
-	if( saeTickAcc >= 3.0 && inv )
+	// a cleanup started from the options reports back as soon as the game runs again
+	if( ( saeTickAcc >= 3.0 || saeCleanPending ) && inv )
 	{
 		saeTickAcc = 0.0;
 		if( SAE_UninstallMode() )
 		{
-			fixed = SAE_CleanAll( inv ) + SAE_CleanAll( SAE_HorseInventory( this ) );
+			fixed = SAE_CleanEverything( this );
+			if( saeCleanPending )
+			{
+				fixed += saeCleanFixed;
+				saeCleanPending = false;
+				saeCleanFixed = 0;
+			}
 			if( fixed > 0 )
 			{
 				SAE_Notify( "sae_msg_cleaned" );
@@ -132,6 +175,7 @@ function OnPlayerTickTimer( deltaTime : float )
 		}
 		else
 		{
+			saeCleanPending = false;
 			saeCleanReported = false;
 		}
 	}
