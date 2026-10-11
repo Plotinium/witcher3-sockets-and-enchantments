@@ -92,6 +92,8 @@ function SAE_RemoveAllRest() : string
 @addMethod(CR4EnchantingMenu)
 function SAE_RefreshAfterEnchant( itemId : SItemUniqueId, word : name )
 {
+	// the list is rebuilt and re-sorted: a selection kept from before could point to another word
+	m_selectedEnchantment = '';
 	UpdateItemsCounter();
 	populateData();
 	populateItemList();
@@ -106,6 +108,8 @@ function SAE_RefreshAfterEnchant( itemId : SItemUniqueId, word : name )
 @addMethod(CR4EnchantingMenu)
 function SAE_RefreshAfterRemove( itemId : SItemUniqueId, message : string )
 {
+	// the list is rebuilt and re-sorted: a selection kept from before could point to another word
+	m_selectedEnchantment = '';
 	theGame.GetGuiManager().ShowNotification( message );
 	UpdateMerchantData();
 	UpdateItemsCounter();
@@ -351,23 +355,37 @@ function OnRemoveEnchantment( itemId : SItemUniqueId )
 }
 
 // in the word list the game highlights only the word the engine keeps: every word the item has
-// gets the label "applied"
+// gets the label "applied".
+// Each list entry is matched to its word through the entry's own "name" member, never by position:
+// the interface sorts the list it receives, so after the first display the position of an entry no
+// longer matches the word list (a position-based label made a click enchant a different word).
 function SAE_MarkList( menuInv : CInventoryComponent, item : SItemUniqueId, words : array<CName>, data : CScriptedFlashArray, manager : W3EnchantmentManager )
 {
 	var schem : SEnchantmentSchematic;
+	var entry : CScriptedFlashObject;
+	var entryName : int;
 	var label : string;
-	var i : int;
+	var i, j : int;
 
 	if( !data )
 		return;
-	for( i = 0; i < words.Size() && i < data.GetLength(); i += 1 )
+	for( i = 0; i < data.GetLength(); i += 1 )
 	{
-		if( !manager.GetSchematic( words[i], schem ) )
-			continue;
-		label = GetLocStringByKeyExt( NameToString( schem.localizedName ) );
-		if( menuInv.IsIdValid( item ) && SAE_HasWord( menuInv, item, words[i] ) )
-			label += " - " + GetLocStringByKeyExt( "sae_list_applied" );
-		data.GetElementFlashObject( i ).SetMemberFlashString( "localizedName", label );
+		entry = data.GetElementFlashObject( i );
+		entryName = entry.GetMemberFlashUInt( "name" );
+		for( j = 0; j < words.Size(); j += 1 )
+		{
+			if( NameToFlashUInt( words[j] ) != entryName )
+				continue;
+			if( manager.GetSchematic( words[j], schem ) )
+			{
+				label = GetLocStringByKeyExt( NameToString( schem.localizedName ) );
+				if( menuInv.IsIdValid( item ) && SAE_HasWord( menuInv, item, words[j] ) )
+					label += " - " + GetLocStringByKeyExt( "sae_list_applied" );
+				entry.SetMemberFlashString( "localizedName", label );
+			}
+			break;
+		}
 	}
 }
 
